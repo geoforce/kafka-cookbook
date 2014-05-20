@@ -123,7 +123,7 @@ default[:kafka][:queued_max_requests] = nil
 # Socket server configuration
 #
 # The port on which the server accepts client connections.
-default[:kafka][:port] = 6667
+default[:kafka][:port] = 9092
 
 #
 # Hostname of broker. If this is set, it will only bind to this address.
@@ -204,7 +204,7 @@ default[:kafka][:log][:retention_minutes] = nil
 # default data retention window for all topics.
 #
 # NOTE: only for 0.8.0
-default[:kafka][:log][:retention_hours] = nil
+default[:kafka][:log][:retention_hours] = 168
 
 #
 # Retention hours per topic, configured as an Hash with topics as keys and
