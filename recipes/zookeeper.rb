@@ -3,7 +3,7 @@
 # Recipe:: zookeeper
 #
 
-include_recipe 'kafka'
+include_recipe 'kafka8'
 
 template ::File.join(node[:kafka][:config_dir], 'zookeeper.properties') do
   source 'zookeeper.properties.erb'
