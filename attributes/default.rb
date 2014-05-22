@@ -128,7 +128,7 @@ default[:kafka][:port] = 9092
 #
 # Hostname of broker. If this is set, it will only bind to this address.
 # If this is not set, it will bind to all interfaces, and publish one to ZK.
-default[:kafka][:host_name] = node[:hostname]
+#default[:kafka][:host_name] = node[:ipaddress]
 
 #
 # If this is set this is the hostname that will be given out to producers,

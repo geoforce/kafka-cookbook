@@ -43,7 +43,9 @@
 
 # Hostname of broker. If this is set, it will only bind to this address. If this is not set,
 # it will bind to all interfaces, and publish one to ZK.
+<% if node[:kafka][:host_name] %>
 <%= render 'partials/option.erb', variables: {key: 'host.name', value: config.host_name} -%>
+<% end %>
 
 <% unless kafka_v0_8_0? %>
 # Hostname the broker will advertise to producers and consumers. If not set, it uses the
