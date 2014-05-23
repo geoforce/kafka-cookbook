@@ -274,7 +274,7 @@ default[:kafka][:log][:flush_scheduler_interval_ms] = nil
 # If this is set to true then attempts to produce, consume, or fetch metadata
 # for a non-existent topic will automatically create it with the default
 # replication factor and number of partitions.
-default[:kafka][:auto_create_topics] = nil
+default[:kafka][:auto_create_topics] = true
 
 #
 # The period of time we hold log files around after they are removed from the
