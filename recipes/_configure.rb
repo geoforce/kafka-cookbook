@@ -26,33 +26,37 @@ template ::File.join(node[:kafka][:config_dir], node[:kafka][:config]) do
   helper(:kafka_v0_8_0?) { node[:kafka][:version] == '0.8.0' }
 end
 
-template kafka_init_opts[:env_path] do
-  source 'kafka.env.erb'
-  owner 'root'
-  group 'root'
-  mode '644'
-  variables({
-    main_class: 'kafka.Kafka',
-    jmx_port: node[:kafka][:jmx_port],
-    config: node[:kafka][:config],
-    log4j_config: 'log4j.properties'
-  })
-end
+# Only use the init provider options for sysv or upstart
+# Allows custom inits (runit, daemontools, etc)
+if node[:kafka][:init_style] =~ /^(?:sysv|upstart)$/
+  template kafka_init_opts[:env_path] do
+    source 'kafka.env.erb'
+    owner 'root'
+    group 'root'
+    mode '644'
+    variables({
+      main_class: 'kafka.Kafka',
+      jmx_port: node[:kafka][:jmx_port],
+      config: node[:kafka][:config],
+      log4j_config: 'log4j.properties'
+    })
+  end
 
-template kafka_init_opts[:script_path] do
-  source kafka_init_opts[:source]
-  owner 'root'
-  group 'root'
-  mode kafka_init_opts[:permissions]
-  variables({
-    daemon_name: 'kafka',
-    port: node[:kafka][:port],
-    user: node[:kafka][:user]
-  })
-end
+  template kafka_init_opts[:script_path] do
+    source kafka_init_opts[:source]
+    owner 'root'
+    group 'root'
+    mode kafka_init_opts[:permissions]
+    variables({
+      daemon_name: 'kafka',
+      port: node[:kafka][:port],
+      user: node[:kafka][:user]
+    })
+  end
 
-service 'kafka' do
-  provider kafka_init_opts[:provider]
-  supports start: true, stop: true, restart: true
-  action [:enable]
+  service 'kafka' do
+    provider kafka_init_opts[:provider]
+    supports start: true, stop: true, restart: true
+    action [:enable]
+  end
 end
