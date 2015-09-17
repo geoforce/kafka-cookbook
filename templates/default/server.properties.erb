@@ -253,6 +253,7 @@
 # partition if it is available.
 <%= render 'partials/option.erb', variables: {key: 'auto.leader.rebalance.enable', value: config.auto_leader_rebalance_enable} -%>
 
+<%= render 'partials/option.erb', variables: {key: 'unclean.leader.election.enable', value: config.unclean_leader_election_enable} -%>
 # The percentage of leader imbalance allowed per broker. The controller will rebalance leadership
 # if this ratio goes above the configured value per broker.
 <%= render 'partials/option.erb', variables: {key: 'leader.imbalance.per.broker.percentage', value: config.leader.imbalance_per_broker_percentage} -%>

@@ -5,7 +5,7 @@
 
 #
 # Version of Kafka to install.
-default[:kafka][:version] = '0.8.1.1'
+default[:kafka][:version] = '0.8.2.1'
 
 #
 # Base URL for Kafka releases. The recipes will a download URL using the
@@ -15,12 +15,12 @@ default[:kafka][:base_url] = 'https://archive.apache.org/dist/kafka'
 #
 # SHA-256 checksum of the archive to download, used by Chef's `remote_file`
 # resource.
-default[:kafka][:checksum] = 'cb141c1d50b1bd0d741d68e5e21c090341d961cd801e11e42fb693fa53e9aaed'
+default[:kafka][:checksum] = 'b748030f22ff5b3473094f5e9bee79ab66bca8cbb1bbf31d2cb7022e079e8f56'
 
 #
 # MD5 checksum of the archive to download, which will be used to validate that
 # the "correct" archive has been downloaded.
-default[:kafka][:md5_checksum] = '7541ed160f1b3aa1a5334d4e782ba4d3'
+default[:kafka][:md5_checksum] = '8f89021195b91f1a2a714d25ae7c60da'
 
 #
 # Scala version of Kafka.
@@ -447,6 +447,7 @@ default[:kafka][:leader][:imbalance_per_broker_percentage] = nil
 # The frequency with which to check for leader imbalance.
 default[:kafka][:leader][:imbalance_check_interval_seconds] = nil
 
+default[:kafka][:unclean_leader_election_enable] = nil
 # Consumer offset management configuration (> v0.8.0 configuration options)
 #
 # The maximum amount of metadata to allow clients to save with their offsets.

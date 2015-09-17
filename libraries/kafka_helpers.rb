@@ -40,11 +40,7 @@ def kafka_download_uri(filename)
 end
 
 def kafka_archive_ext
-  if kafka_v0_8_0? && kafka_binary_install?
-    'tar.gz'
-  else
     'tgz'
-  end
 end
 
 def kafka_build_command
@@ -56,7 +52,7 @@ def kafka_build_command
 end
 
 def kafka_v0_8_0?
-  node[:kafka][:version] == '0.8.0'
+  node[:kafka][:version] == '0.8.2.1'
 end
 
 def kafka_install_method
